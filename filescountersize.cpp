@@ -3,7 +3,7 @@
 //FilesCounterSize::FilesCounterSize() {}
 
 
-void fill_dict(const QString &path, QMap<QString, qint64> &directorySizes) {
+void fill_dict(const QString &path, QMap<QString, qint64> &directory_sizes) {
     QDir directory(path);
 
     if (!directory.exists()) {
@@ -16,22 +16,22 @@ void fill_dict(const QString &path, QMap<QString, qint64> &directorySizes) {
 
     qint64 size = 0;
 
-    foreach(const QFileInfo &fileInfo, list) {
-        if (fileInfo.isDir()) {
-            qint64 subdirSize = 0;
-            fill_dict(fileInfo.absoluteFilePath(), directorySizes);
-            subdirSize = directorySizes.value(fileInfo.absoluteFilePath());
-            directorySizes.insert(fileInfo.absoluteFilePath(), subdirSize);
-            size += subdirSize;
+    foreach(const QFileInfo &file_info, list) {
+        if (file_info.isDir()) {
+            qint64 subdir_size = 0;
+            fill_dict(file_info.absoluteFilePath(), directory_sizes);
+            subdir_size = directory_sizes.value(file_info.absoluteFilePath());
+            directory_sizes.insert(file_info.absoluteFilePath(), subdir_size);
+            size += subdir_size;
         } else {
-            size += fileInfo.size();
+            size += file_info.size();
         }
     }
 
-    directorySizes.insert(path, size); // Размер текущей директории в байтах
+    directory_sizes.insert(path, size); // Размер текущей директории в байтах
 }
 
-void FilesCounterSize::fill_dict(const QString &path, QMap<QString, qint64> &directorySizes)
+void FilesCounterSize::fill_dict(const QString &path, QMap<QString, qint64> &directory_sizes)
 {
     QDir directory(path);
 
@@ -45,17 +45,17 @@ void FilesCounterSize::fill_dict(const QString &path, QMap<QString, qint64> &dir
 
     qint64 size = 0;
 
-    foreach(const QFileInfo &fileInfo, list) {
-        if (fileInfo.isDir()) {
-            qint64 subdirSize = 0;
-            fill_dict(fileInfo.absoluteFilePath(), directorySizes);
-            subdirSize = directorySizes.value(fileInfo.absoluteFilePath());
-            directorySizes.insert(fileInfo.absoluteFilePath(), subdirSize);
-            size += subdirSize;
+    foreach(const QFileInfo &file_info, list) {
+        if (file_info.isDir()) {
+            qint64 subdir_size = 0;
+            fill_dict(file_info.absoluteFilePath(), directory_sizes);
+            subdir_size = directory_sizes.value(file_info.absoluteFilePath());
+            directory_sizes.insert(file_info.absoluteFilePath(), subdir_size);
+            size += subdir_size;
         } else {
-            size += fileInfo.size();
+            size += file_info.size();
         }
     }
 
-    directorySizes.insert(path, size); // Размер текущей директории в байтах
+    directory_sizes.insert(path, size); // Размер текущей директории в байтах
 }

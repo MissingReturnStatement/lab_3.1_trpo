@@ -6,7 +6,7 @@ class ExtensionCounterSize : public ICounterSize
 {
 public:
     ~ExtensionCounterSize() = default;
-    void fill_dict(const QString &path, QMap<QString, qint64> &directorySizes) override;
+    void fill_dict(const QString &path, QMap<QString, qint64> &directory_sizes) override;
 };
 
 #endif // EXTENSIONCOUNTERSIZE_H

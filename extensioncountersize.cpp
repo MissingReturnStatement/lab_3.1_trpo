@@ -2,10 +2,10 @@
 
 //ExtensionCounterSize::ExtensionCounterSize() {}
 
-void ExtensionCounterSize::fill_dict(const QString &path, QMap<QString, qint64> &directorySizes)
+void ExtensionCounterSize::fill_dict(const QString &path, QMap<QString, qint64> &directory_sizes)
 {
 
-    QDir directory(path);
+    QDir directory(path);//берём директорию
 
     if (!directory.exists()) {
         qDebug() << "Directory does not exist.";
@@ -13,22 +13,21 @@ void ExtensionCounterSize::fill_dict(const QString &path, QMap<QString, qint64> 
     }
 
     directory.setFilter(QDir::Files | QDir::Dirs | QDir::NoDotAndDotDot);
-    QFileInfoList list = directory.entryInfoList();
+    QFileInfoList list = directory.entryInfoList();//возвращает всё что лежит в папке
 
-    foreach(const QFileInfo &fileInfo, list) {
-        if (fileInfo.isDir()) {
-            qint64 subdirSize = 0;
-            fill_dict(fileInfo.absoluteFilePath(), directorySizes);
+    foreach(const QFileInfo &file_info, list) {
+        if (file_info.isDir()) {
+            fill_dict(file_info.absoluteFilePath(), directory_sizes);
         } else {
-            QString extension = fileInfo.suffix();
-            qint64 fileSize = fileInfo.size();
-            directorySizes[extension] += fileSize;
+            QString extension = file_info.suffix();
+            qint64 file_size = file_info.size();
+            directory_sizes[extension] += file_size;
         }
     }
 
-    qint64 totalSize = 0;
-    foreach (qint64 size, directorySizes) {
-        totalSize += size;
+    qint64 total_size = 0;
+    foreach (qint64 size, directory_sizes) {
+        total_size += size;
     }
 
 }

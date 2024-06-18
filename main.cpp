@@ -16,14 +16,14 @@ QMap<QString,double> count_percentage(QMap<QString,qint64> &dict, double border)
     if (counter==0) return counted_dict;
     foreach(auto item, dict.keys()){
         double percent = ((double)dict[item])*100.0/counter;
-        if (percent > border) counted_dict[item] = percent;
+        if (percent > border)  counted_dict[item] = percent;
         else{
             if(counted_dict.count("other") == 0) {
-                counted_dict["other"] = percent;
+                 counted_dict[item] = percent;
 
             }
             else{
-                counted_dict["other"] += percent;
+                 counted_dict[item] += percent;
             }
         }
     }
@@ -35,7 +35,7 @@ int main(int argc, char *argv[])
 {
     QCoreApplication a(argc, argv);
     QMap<QString, qint64> directory_sizes;
-    QString path = "C:\\Users\\mrdea\\OneDrive\\Рабочий стол\\Новая папка (2)";
+    QString path = "";
     ICounterSize *file_strat = new FilesCounterSize();
     ICounterSize * extension_strat = new ExtensionCounterSize();
     //QMap<QString, vector<QString>> directorys_tests;
@@ -50,8 +50,8 @@ int main(int argc, char *argv[])
         path = item; // записал путь
         qDebug()<<item; //вывел
         Context strat(extension_strat); //выбрал стратегию
-        strat.fill_dict(path); //выполнил алгоритм стратегии
-        directory_sizes = strat.get_map(); //получил посчитанный словарь
+        strat.count_size(path); //выполнил алгоритм стратегии
+        directory_sizes = strat.get_dict(); //получил посчитанный словарь
 
         qDebug() << "STRAT EXTENSIONS Directory sizes in bytes:";
         if (!directory_sizes.empty()){
@@ -72,8 +72,8 @@ int main(int argc, char *argv[])
         else qDebug()<<item<<"this directory empty";
         qDebug()<<"\n";
         strat = file_strat; //поменял стратегию
-        strat.fill_dict(path); //выполнил алгоритм стратегии
-        directory_sizes = strat.get_map(); //получил посчитанный словарь
+        strat.count_size(path); //выполнил алгоритм стратегии
+        directory_sizes = strat.get_dict(); //получил посчитанный словарь
 
         qDebug() << "STRAT FILES Directory sizes in bytes:";
 

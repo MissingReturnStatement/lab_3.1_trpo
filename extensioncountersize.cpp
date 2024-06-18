@@ -2,7 +2,7 @@
 
 //ExtensionCounterSize::ExtensionCounterSize() {}
 
-void ExtensionCounterSize::fill_dict(const QString &path, QMap<QString, qint64> &directory_sizes)
+void ExtensionCounterSize::count_size(const QString &path, QMap<QString, qint64> &directory_sizes)
 {
 
     QDir directory(path);//берём директорию
@@ -17,7 +17,7 @@ void ExtensionCounterSize::fill_dict(const QString &path, QMap<QString, qint64> 
 
     foreach(const QFileInfo &file_info, list) {
         if (file_info.isDir()) {
-            fill_dict(file_info.absoluteFilePath(), directory_sizes);
+            count_size(file_info.absoluteFilePath(), directory_sizes);
         } else {
             QString extension = file_info.suffix();
             qint64 file_size = file_info.size();

@@ -15,8 +15,8 @@ public:
     Context(ICounterSize *strategy);
     ~Context() = default;
     void set_strategy(ICounterSize *strategy);
-    void fill_dict(const QString& path);
-    const QMap<QString,qint64>& get_map();
+    void count_size(const QString& path);
+    const QMap<QString,qint64>& get_dict();
 private:
     ICounterSize *pointer;
 

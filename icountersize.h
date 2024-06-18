@@ -12,7 +12,7 @@ class ICounterSize
 public:
     //ICounterSize(){};
     virtual ~ICounterSize() = default;
-    virtual void fill_dict(const QString &path, QMap<QString, qint64> &directory_sizes) = 0;
+    virtual void count_size(const QString &path, QMap<QString, qint64> &directory_sizes) = 0;
 };
 
 #endif // ICOUNTERSIZE_H

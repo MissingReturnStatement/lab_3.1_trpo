@@ -19,14 +19,14 @@ void Context::set_strategy( ICounterSize *strategy)
     pointer = strategy;
 }
 
-void Context::fill_dict(const QString &path)
+void Context::count_size(const QString &path)
 {
     if (pointer)
-    pointer->fill_dict(path,map);
+    pointer->count_size(path,map);
     else qDebug()<<"strategy in nullptr";
 }
 
-const QMap<QString, qint64> &Context::get_map()
+const QMap<QString, qint64> &Context::get_dict()
 {
     return map;
 }

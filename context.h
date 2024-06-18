@@ -7,7 +7,7 @@
 
 class Context
 {
-    QMap<QString, qint64> map;
+    QMap<QString, qint64> dict;
     ExtensionCounterSize *extension_strategy;
     FilesCounterSize *files_strategy;
 public:

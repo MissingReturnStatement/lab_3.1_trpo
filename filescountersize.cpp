@@ -20,7 +20,7 @@ void FilesCounterSize::count_size(const QString &path, QMap<QString, qint64> &di
     foreach(const QFileInfo &file_info, list) {
         if (file_info.isDir()) {
             qint64 subdir_size = 0;
-            count_size(file_info.absoluteFilePath(), directory_sizes);
+            count_size(file_info.absoluteFilePath(), directory_sizes);//рекурсия
             subdir_size = directory_sizes.value(file_info.absoluteFilePath());
             directory_sizes.insert(file_info.absoluteFilePath(), subdir_size);
             size += subdir_size;

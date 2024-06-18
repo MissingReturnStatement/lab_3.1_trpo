@@ -38,7 +38,6 @@ int main(int argc, char *argv[])
     QString path = "";
     ICounterSize *file_strat = new FilesCounterSize();
     ICounterSize * extension_strat = new ExtensionCounterSize();
-    //QMap<QString, vector<QString>> directorys_tests;
     QString current_dir = QDir::currentPath();
     QVector<QString> string_vector;
     string_vector.append("C:\\trpo_labs\\lab_3_1_trpo\\EMPTY_EMBED_EMPTY");
@@ -91,10 +90,6 @@ int main(int argc, char *argv[])
         else qDebug()<<item<<"this directory empty";
         qDebug()<<"____________________";
     }
-
-    //ТЕСТ НА ПУСТОТУ
-    //C:\Users\mrdea\OneDrive\Рабочий стол\woop_woop
-
     delete file_strat;
     delete extension_strat;
     return a.exec();

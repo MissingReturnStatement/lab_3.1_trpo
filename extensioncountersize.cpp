@@ -17,17 +17,11 @@ void ExtensionCounterSize::count_size(const QString &path, QMap<QString, qint64>
 
     foreach(const QFileInfo &file_info, list) {
         if (file_info.isDir()) {
-            count_size(file_info.absoluteFilePath(), directory_sizes);
+            count_size(file_info.absoluteFilePath(), directory_sizes);//рекурсия
         } else {
             QString extension = file_info.suffix();
             qint64 file_size = file_info.size();
             directory_sizes[extension] += file_size;
         }
     }
-
-    qint64 total_size = 0;
-    foreach (qint64 size, directory_sizes) {
-        total_size += size;
-    }
-
 }
